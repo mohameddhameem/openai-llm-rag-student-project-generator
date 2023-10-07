@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-document-generator
+spec:
+  replicas: 1  # Adjust as needed
+  selector:
+    matchLabels:
+      app: streamlit-document-generator
+  template:
+    metadata:
+      labels:
+        app: streamlit-document-generator
+    spec:
+      containers:
+      - name: streamlit-app
+        image: your-acr-name.azurecr.io/streamlit-document-generator:v1  # Use the image you pushed to ACR
+        ports:
+        - containerPort: 8501
