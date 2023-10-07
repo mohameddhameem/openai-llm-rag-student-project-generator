@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import pandas as pd
 import PyPDF2
-from PyPDF2.pdf import PageObject
+#from PyPDF2 import PageObject
 
 # Replace with your OpenAI API key
 api_key = ""
@@ -68,7 +68,8 @@ for uploaded_file in uploaded_files:
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
         text = ""
         for page_num in range(len(pdf_reader.pages)):
-            page = PageObject.create_page(pdf_reader.pages[page_num])
+            page = pdf_reader.pages[page_num]
+            #page = PageObject.create_page(pdf_reader.pages[page_num])
             text += page.extract_text()
         reference_documents.append(text)
     elif file_type == "text/csv":
